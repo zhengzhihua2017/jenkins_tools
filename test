@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy Jenkinsfile.
+
 node {
     try {
         stage('Test') {
