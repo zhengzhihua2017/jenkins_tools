@@ -29,6 +29,14 @@ pipeline {
             }
         }
 
+        stage('a') {
+            steps {
+                node {
+                    
+                }
+            }
+        }
+
         stage('远程登陆') {
             steps {
                 node {
