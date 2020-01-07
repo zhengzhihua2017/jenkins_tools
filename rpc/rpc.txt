@@ -7,12 +7,23 @@ pipeline {
 
 
     stages {
+        stage('条件语句') {
+            when {
+                expression {
+                    params.ServerName, value: 'zzh_s1'
+                }
+            }
+
+            steps {
+                echo "xxxxx"
+            }
+        }
+
 
         stage('变量初始化') {
             steps{
                 script{
-                    switch("${params.ServerName}")
-                    {
+                    switch("${params.ServerName}") {
                         case "zzh_s1":
                             echo "******"
                             break
