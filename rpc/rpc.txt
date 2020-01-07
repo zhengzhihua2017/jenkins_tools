@@ -7,7 +7,7 @@ pipeline {
 
 
     stages {
-        stage('变量初始化') {
+        stage('变量') {
             steps{
                 echo "${params.ServerName}"
 
