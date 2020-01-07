@@ -6,6 +6,7 @@ pipeline {
     }
 
     def remote = [:]
+    remote.name = "abc"
 
     stages {
         stage('Example Deploy') {
@@ -16,7 +17,8 @@ pipeline {
                 }
             }
             steps {
-                echo 'zzh_s1 Deploying'
+                remote.name = "bca"
+                echo "${remote.name}"
             }
         }
 
