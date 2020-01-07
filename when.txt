@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
+    }
+
+
+    stages {
+        stage('Example Deploy') {
+            when {
+                expression { 
+                   return  (params.ServerName == "zzh_s1" )
+                    
+                }
+            }
+            steps {
+                remote.name = "bca"
+                echo "${remote.name}"
+            }
+        }
+
+        stage('远程登陆') {
+            steps{
+                echo "hello2 ${params.ServerName}"
+            }
+        }
+    }
+
+}
