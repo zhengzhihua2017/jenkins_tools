@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('变量初始化') {
             steps{
-                case params.ServerName in 
+                case "${params.ServerName}" in 
                     "zzh_s1")
                         echo "xxxx zzh_s1"
                         ;;
