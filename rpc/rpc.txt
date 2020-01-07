@@ -35,6 +35,7 @@ node {
         }
 
         stage('远程登陆') {
+            echo "hello"
             withCredentials([sshUserPrivateKey(credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: remote.user)]) {
                 stage("SSH Steps Rocks!") {
                     writeFile file: 'abc.sh', text: 'ifconfig'
