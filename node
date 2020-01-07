@@ -1,6 +1,8 @@
 #!/usr/bin/env groovy Jenkinsfile.
 
 node {
+    def username = 'Jenkins'
+
     stage('Build') {
         echo 'Building'
     }
@@ -9,5 +11,7 @@ node {
     }
     stage('Deploy') {
         echo 'Deploying'
+        echo 'Hello Mr. ${username}'
+        echo "I said, Hello Mr. ${username}"
     }
 }
