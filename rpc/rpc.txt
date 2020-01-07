@@ -4,7 +4,7 @@ parameters {
 
 def remote = [:]
 remote.allowAnyHosts = true
-remote.identityFile = identity
+
 
 node {
 
@@ -29,6 +29,8 @@ node {
                             break
                     }
                 }
+
+                remote.identityFile = identity
             }
         }
 
