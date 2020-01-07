@@ -23,6 +23,7 @@ pipeline {
             steps{
                 script{
                     if (params.ServerName == "zzh_s1"){
+                        params.ServerName="xxxxxx"
                         println "file is exist"   
                     }
                 }
