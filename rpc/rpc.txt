@@ -1,5 +1,5 @@
 pipeline {
-     agent {label 'slave'}
+    agent any
 
     parameters {
         choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
@@ -31,8 +31,8 @@ pipeline {
 
         stage('a') {
             steps {
-                node {
-
+                node (label: 'slave') {
+                    
                 }
             }
         }
