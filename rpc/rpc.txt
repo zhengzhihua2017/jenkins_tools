@@ -32,7 +32,7 @@ pipeline {
         stage('远程登陆') {
             steps {
                 node {
-                    echo "hello world"
+                    sh "echo 'hello'"
                 }
             }
 
