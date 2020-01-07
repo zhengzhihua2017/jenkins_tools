@@ -10,8 +10,8 @@ pipeline {
         stage('变量') {
             steps{
                 echo "${params.ServerName}"
-
-                case "${params.ServerName}" in 
+                sh "
+                case ${params.ServerName} in 
                     "zzh_s1")
                         echo "xxxx zzh_s1"
                         ;;
@@ -19,6 +19,8 @@ pipeline {
                         echo "xxxx zzh_s1"
                         ;;
                 esac
+                "
+
             }
         }
 
