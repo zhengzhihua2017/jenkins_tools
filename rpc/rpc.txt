@@ -20,6 +20,14 @@ pipeline {
                 }
             }
         }
+
+        stage('打印') {
+            steps{
+                script{
+                    println "params.ServerName:" + server.name
+                }
+            }
+        }
     }
 
 }
