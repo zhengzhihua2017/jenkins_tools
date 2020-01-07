@@ -32,9 +32,7 @@ pipeline {
         stage('远程登陆') {
             steps {
                 node {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: server.user)]) {
-                        writeFile file: 'abc.sh', text: 'ifconfig'
-                    }
+                    echo "hello world"
                 }
             }
 
