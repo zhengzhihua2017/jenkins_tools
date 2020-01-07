@@ -5,12 +5,10 @@ pipeline {
         choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
     }
 
-    def remote = [:]
-    remote.allowAnyHosts = true
-
-
-
     stages {
+        def remote = [:]
+        remote.allowAnyHosts = true
+
         stage('变量初始化') {
             steps{
 
