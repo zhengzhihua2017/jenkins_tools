@@ -1,52 +1,17 @@
 pipeline {
     agent any
 
-    parameters {
-        choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
-    }
-
     stages {
-        def remote = [:]
-        remote.allowAnyHosts = true
 
         stage('变量初始化') {
             steps{
-
-                echo "hello"
-
-                script{
-                    switch(params.ServerName)
-                    {
-                        case "zzh_s1":
-                            remote.name = "zzh_s1"
-                            remote.host = "192.168.6.12"
-                            remote.user = "ubuntu"
-                            break
-                       case "zzh_s2":
-                            remote.name = "zzh_s1"
-                            remote.host = "192.168.6.12"
-                            remote.user = "root"
-                            break
-                        default:
-                            echo "############ wrong pipeline ServerName ############"
-                            break
-                    }
-                }
-
-                remote.identityFile = identity
+                echo "hello1"
             }
         }
 
         stage('远程登陆') {
-            withCredentials([sshUserPrivateKey(credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: remote.user)]) {
-                stage("SSH Steps Rocks!") {
-                    writeFile file: 'abc.sh', text: 'ifconfig'
-                    sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
-                    sshPut remote: remote, from: 'abc.sh', into: '.'
-                    sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
-                    sshScript remote: remote, script: 'abc.sh'
-                    sshRemove remote: remote, path: 'abc.sh'
-                }
+            steps{
+                echo "hello2"
             }
         }
     }
