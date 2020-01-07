@@ -39,7 +39,7 @@ pipeline {
 
         stage('远程登陆') {
             steps {
-                node {
+                node (label: 'slave') {
                     sh "echo 'hello'"
                 }
             }
