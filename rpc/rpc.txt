@@ -7,11 +7,15 @@ pipeline {
 
 
     stages {
-        stage('变量') {
-            steps{
-                if( params.ServerName == "zzh_s1" ){
-                    echo "不需要通知测试人员人工验收"
+        stage('Example Deploy') {
+            when {
+                expression { 
+                   return  (params.ServerName == "zzh_s1" )
+                    
                 }
+            }
+            steps {
+                echo 'zzh_s1 Deploying'
             }
         }
 
