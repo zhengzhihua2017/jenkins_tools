@@ -30,15 +30,10 @@ pipeline {
         }
 
         stage('远程登陆') {
-            steps{
-                node{
+            steps {
+                node {
                     withCredentials([sshUserPrivateKey(credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: server.user)]) {
                         writeFile file: 'abc.sh', text: 'ifconfig'
-                        sshCommand remote: server, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
-                        sshPut remote: server, from: 'abc.sh', into: '.'
-                        sshGet remote: server, from: 'abc.sh', into: 'bac.sh', override: true
-                        sshScript remote: server, script: 'abc.sh'
-                        sshRemove remote: server, path: 'abc.sh'
                     }
                 }
             }
