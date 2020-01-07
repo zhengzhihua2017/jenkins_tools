@@ -1,12 +1,15 @@
-parameters {
-    choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
-}
 
-def remote = [:]
-remote.allowAnyHosts = true
+pipeline {
+    agent any
+    
+    parameters {
+        choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
+    }
+
+    def remote = [:]
+    remote.allowAnyHosts = true
 
 
-node {
 
     stages {
         stage('变量初始化') {
