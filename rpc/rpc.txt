@@ -41,7 +41,7 @@ pipeline {
                             credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0',
                             keyFileVariable: 'identity',
                             passphraseVariable: '',
-                            usernameVariable: 'ubuntu')
+                            usernameVariable: server.user)
                         ])
                     {
                         remote.user = 'ubuntu'
@@ -50,6 +50,10 @@ pipeline {
                             '''
                             for i in {1..5}; do echo -n "Loop $i "; date ; sleep 1; done
                             '''
+                        sshPut remote: remote, from: 'abc.sh', into: '.'
+                        sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
+                        sshScript remote: remote, script: 'abc.sh'
+                        sshRemove remote: remote, path: 'abc.sh'
                     }
                 }
             }
