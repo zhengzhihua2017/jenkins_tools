@@ -9,18 +9,9 @@ pipeline {
     stages {
         stage('变量') {
             steps{
-                echo "${params.ServerName}"
-                sh "
-                case ${params.ServerName} in 
-                    "zzh_s1")
-                        echo "xxxx zzh_s1"
-                        ;;
-                    "zzh_s2")
-                        echo "xxxx zzh_s1"
-                        ;;
-                esac
-                "
-
+                if(params.ServerName=="zzh_s1"){
+                    echo "不需要通知测试人员人工验收"
+                }
             }
         }
 
