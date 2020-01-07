@@ -5,6 +5,7 @@ pipeline {
         choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
     }
 
+    def remote = [:]
 
     stages {
         stage('Example Deploy') {
@@ -23,7 +24,7 @@ pipeline {
             steps{
                 script{
                     if (params.ServerName == "zzh_s1"){
-                        params.ServerName="xxxxxx"
+                        remote.name="xxxxxx"
                         println "file is exist"   
                     }
                 }
@@ -32,7 +33,7 @@ pipeline {
 
         stage('变量初始化') {
             steps{
-                echo "hello1 ${params.ServerName}"
+                echo "hello1 ${remote.name}"
             }
         }
 
