@@ -17,6 +17,8 @@ pipeline {
                     if (params.ServerName == "zzh_s1"){
                         server = zzh_s1()  
                     }
+
+                    echo "hello"
                 }
             }
         }
