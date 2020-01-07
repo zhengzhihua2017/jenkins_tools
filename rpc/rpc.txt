@@ -10,13 +10,13 @@ pipeline {
 
         stage('变量初始化') {
             steps{
-                echo "hello1"
+                echo "hello1 ${params.ServerName}"
             }
         }
 
         stage('远程登陆') {
             steps{
-                echo "hello2"
+                echo "hello2 ${params.ServerName}"
             }
         }
     }
