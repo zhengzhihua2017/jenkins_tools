@@ -10,6 +10,26 @@ pipeline {
 
         stage('变量初始化') {
             steps{
+                script{
+                    switch(params.ServerName)
+                    {
+                        case "zzh_s1":
+                            echo "******"
+                            break
+                       case "zzh_s2":
+                            echo "======"
+                            break
+                        default:
+                            echo "############ wrong pipeline ServerName ############"
+                            break
+                    }
+                }
+
+            }
+        }
+
+        stage('变量初始化') {
+            steps{
                 echo "hello1 ${params.ServerName}"
             }
         }
