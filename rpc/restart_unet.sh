@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo su
-echo "restart unet"
+cd /data/docker-composes/
+docker-compose -f unet.yml restart
