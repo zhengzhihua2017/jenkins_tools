@@ -27,6 +27,10 @@ pipeline {
         }
 
         stage('远程登陆') {
+            options {
+                timeout(time: 5, unit: 'MINUTES')
+            }
+            
             steps {
                 script {
                     withCredentials([
@@ -39,10 +43,6 @@ pipeline {
                     {
                         server.user = 'root'
                         server.identityFile = identity
-                        sshCommand remote: server, command:
-                            '''
-                            for i in {1..5}; do echo -n "Loop $i "; date ; sleep 1; done
-                            '''
                         sshPut remote: server, from: './rpc/restart_unet.sh', into: '/tmp'
                         sshCommand remote: server, command: 'bash /tmp/restart_unet.sh'
                     }
