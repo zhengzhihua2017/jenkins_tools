@@ -6,9 +6,7 @@ pipeline {
     }
 
     environment{
-        def server = [:]
-        server.allowAnyHosts = true
-        server.user = "root"
+        def server = ''
     }   
 
 
@@ -18,12 +16,10 @@ pipeline {
                 script{
                     switch (params.ServerName) {
                         case "zzh_s1":
-                            server.name = "zzh_s1"
-                            server.host = "192.168.6.12"
+                            server = zzh_s1()
                             break
                         case "zzh_s2":
-                            server.name = "zzh_s2"
-                            server.host = "192.168.6.12"
+                            server = zzh_s1()
                             break
                     }
                 }
