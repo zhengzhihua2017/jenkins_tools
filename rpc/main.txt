@@ -43,10 +43,9 @@ pipeline {
                             '''
                             for i in {1..5}; do echo -n "Loop $i "; date ; sleep 1; done
                             '''
-                        sshPut remote: server, from: 'abc.sh', into: '.'
-                        sshGet remote: server, from: 'abc.sh', into: 'bac.sh', override: true
-                        sshScript remote: server, script: 'abc.sh'
-                        sshRemove remote: server, path: 'abc.sh'
+                        sshPut remote: server, from: './rpc/restart_unet.sh', into: '.'
+                        sshScript remote: server, script: 'restart_unet.sh'
+                        sshRemove remote: server, path: 'restart_unet.sh'
                     }
                 }
             }
