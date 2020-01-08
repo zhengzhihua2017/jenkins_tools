@@ -29,10 +29,6 @@ pipeline {
         stage('远程登陆') {
             steps {
                 script {
-                    def remote = [:]
-                    remote.name = server.name
-                    remote.host = server.host
-                    remote.allowAnyHosts = server.allowAnyHosts
                     withCredentials([
                         sshUserPrivateKey(
                             credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0',
@@ -41,16 +37,16 @@ pipeline {
                             usernameVariable: server.user)
                         ])
                     {
-                        remote.user = 'ubuntu'
-                        remote.identityFile = identity
-                        sshCommand remote: remote, command:
+                        server.user = 'ubuntu'
+                        server.identityFile = identity
+                        sshCommand remote: server, command:
                             '''
                             for i in {1..5}; do echo -n "Loop $i "; date ; sleep 1; done
                             '''
-                        sshPut remote: remote, from: 'abc.sh', into: '.'
-                        sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
-                        sshScript remote: remote, script: 'abc.sh'
-                        sshRemove remote: remote, path: 'abc.sh'
+                        sshPut remote: server, from: 'abc.sh', into: '.'
+                        sshGet remote: server, from: 'abc.sh', into: 'bac.sh', override: true
+                        sshScript remote: server, script: 'abc.sh'
+                        sshRemove remote: server, path: 'abc.sh'
                     }
                 }
             }
