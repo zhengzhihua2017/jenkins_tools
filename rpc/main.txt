@@ -12,13 +12,17 @@ pipeline {
 
     stages {
         stage('初始化') {
-            switch (params.ServerName) {
-                case "zzh_s1":
-                    server = zzh_s1()
-                    break
-                case "zzh_s2":
-                    server = zzh_s1()
-                    break
+            steps{
+                script{
+                    switch (params.ServerName) {
+                        case "zzh_s1":
+                            server = zzh_s1()
+                            break
+                        case "zzh_s2":
+                            server = zzh_s1()
+                            break
+                    }
+                }
             }
         }
 
