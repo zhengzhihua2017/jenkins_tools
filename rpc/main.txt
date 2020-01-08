@@ -6,7 +6,9 @@ pipeline {
     }
 
     environment{
-        def server = ''
+        def server = [:]
+        server.allowAnyHosts = true
+        server.user = "root"
     }   
 
 
@@ -16,10 +18,12 @@ pipeline {
                 script{
                     switch (params.ServerName) {
                         case "zzh_s1":
-                            server = zzh_s1()
+                            server.name = "zzh_s1"
+                            server.host = "192.168.6.12"
                             break
                         case "zzh_s2":
-                            server = zzh_s1()
+                            server.name = "zzh_s2"
+                            server.host = "192.168.6.12"
                             break
                     }
                 }
@@ -37,7 +41,7 @@ pipeline {
                             usernameVariable: server.user)
                         ])
                     {
-                        server.user = 'ubuntu'
+                        server.user = 'root'
                         server.identityFile = identity
                         sshCommand remote: server, command:
                             '''
@@ -58,6 +62,6 @@ def zzh_s1(){
     remote.name = "zzh_s1"
     remote.host = "192.168.6.12"
     remote.allowAnyHosts = true
-    remote.user = "ubuntu"
+    remote.user = "root"
     return remote
 }
