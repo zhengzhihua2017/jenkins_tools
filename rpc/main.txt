@@ -6,6 +6,10 @@ pipeline {
             name: 'ServerName',
             choices: [
                 'zzh_s1',
+                'develop',
+                'release',
+                'time_test1',
+                'time_test2',
                 'feature_1',
                 'feature_2',
                 'feature_3',
@@ -38,6 +42,18 @@ pipeline {
                     switch (params.ServerName) {
                         case "zzh_s1":
                             server = zzh_s1()
+                            break
+                        case "develop":
+                            server = develop()
+                            break
+                        case "release":
+                            server = release()
+                            break
+                        case "time_test1":
+                            server = time_test1()
+                            break
+                        case "time_test2":
+                            server = time_test2()
                             break
                         case "feature_1":
                             server = feature_1()
@@ -111,7 +127,7 @@ pipeline {
                         server.identityFile = identity
                         sshCommand remote: server, command: 'date > /tmp/jenkins_operation'
                         sshPut remote: server, from: './rpc/restart_unet.sh', into: '/tmp'
-                        sshCommand remote: server, command: 'bash /tmp/restart_unet.sh'
+                        sshCommand remote: server, command: "bash /tmp/restart_unet.sh ${server.path}"
                     }
                 }
             }
@@ -120,12 +136,14 @@ pipeline {
 
 }
 
+
 def zzh_s1(){
     def remote = [:]
     remote.name = "zzh_s1"
     remote.host = "192.168.6.12"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -135,6 +153,7 @@ def feature_1(){
     remote.host = "192.168.6.45"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -144,6 +163,7 @@ def feature_2(){
     remote.host = "192.168.6.73"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -153,6 +173,7 @@ def feature_3(){
     remote.host = "192.168.6.19"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -162,6 +183,7 @@ def feature_4(){
     remote.host = "192.168.6.50"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -171,6 +193,7 @@ def feature_5(){
     remote.host = "192.168.6.22"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -180,6 +203,7 @@ def feature_6(){
     remote.host = "192.168.6.45"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -189,6 +213,7 @@ def feature_7(){
     remote.host = "192.168.6.66"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -198,6 +223,7 @@ def feature_8(){
     remote.host = "192.168.6.49"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -207,6 +233,7 @@ def feature_9(){
     remote.host = "192.168.6.21"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -216,6 +243,7 @@ def feature_10(){
     remote.host = "192.168.6.76"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -225,6 +253,7 @@ def feature_11(){
     remote.host = "192.168.6.65"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -234,6 +263,7 @@ def feature_12(){
     remote.host = "192.168.6.71"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -243,6 +273,7 @@ def feature_13(){
     remote.host = "192.168.6.27"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -252,6 +283,7 @@ def feature_14(){
     remote.host = "192.168.6.55"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -261,6 +293,7 @@ def feature_15(){
     remote.host = "192.168.6.64"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }
 
@@ -270,5 +303,46 @@ def feature_16(){
     remote.host = "192.168.6.67"
     remote.allowAnyHosts = true
     remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def time_test1(){
+    def remote = [:]
+    remote.name = "time_test1"
+    remote.host = "192.168.6.32"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def time_test2(){
+    def remote = [:]
+    remote.name = "time_test2"
+    remote.host = "192.168.6.41"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def develop(){
+    def remote = [:]
+    remote.name = "develop"
+    remote.host = "192.168.2.249"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def release(){
+    def remote = [:]
+    remote.name = "release"
+    remote.host = "192.168.1.52"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
     return remote
 }

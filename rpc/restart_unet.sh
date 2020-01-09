@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /data/docker-composes/
+cd $1
 docker-compose -f unet.yml restart
 exit 0
