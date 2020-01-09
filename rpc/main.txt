@@ -333,7 +333,7 @@ def develop(){
     remote.host = "192.168.2.249"
     remote.allowAnyHosts = true
     remote.user = "root"
-    remote.path = "/data/docker-composes/"
+    remote.path = "/data/docker-composes/develop"
     return remote
 }
 
@@ -343,6 +343,6 @@ def release(){
     remote.host = "192.168.1.52"
     remote.allowAnyHosts = true
     remote.user = "root"
-    remote.path = "/data/docker-composes/"
+    remote.path = "/data/docker-composes/release"
     return remote
 }
