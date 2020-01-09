@@ -2,7 +2,28 @@ pipeline {
     agent any
 
     parameters {
-        choice(name: 'ServerName', choices: ['zzh_s1', 'zzh_s2'], description: '服务器名称')
+        choice(
+            name: 'ServerName',
+            choices: [
+                'zzh_s1',
+                'feature-1',
+                'feature-2',
+                'feature-3',
+                'feature-4',
+                'feature-5',
+                'feature-6',
+                'feature-7',
+                'feature-8',
+                'feature-9',
+                'feature-10',
+                'feature-11',
+                'feature-12',
+                'feature-13',
+                'feature-14',
+                'feature-15',
+                'feature-16'],
+            description: '服务器名称'
+        )
     }
 
     environment{
@@ -18,7 +39,7 @@ pipeline {
                         case "zzh_s1":
                             server = zzh_s1()
                             break
-                        case "zzh_s2":
+                        case "feature":
                             server = zzh_s1()
                             break
                     }
@@ -30,7 +51,7 @@ pipeline {
             options {
                 timeout(time: 5, unit: 'MINUTES')
             }
-            
+
             steps {
                 script {
                     withCredentials([
