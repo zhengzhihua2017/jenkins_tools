@@ -101,7 +101,7 @@ pipeline {
                 script {
                     withCredentials([
                         sshUserPrivateKey(
-                            credentialsId: 'b15e628f-4f03-4058-bdc2-0136151171b0',
+                            credentialsId: '91e688ab-5a3f-41c1-9bb1-4768996a94a7',
                             keyFileVariable: 'identity',
                             passphraseVariable: '',
                             usernameVariable: server.user)
