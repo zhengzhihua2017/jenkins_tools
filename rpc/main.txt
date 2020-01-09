@@ -109,6 +109,7 @@ pipeline {
                     {
                         server.user = 'root'
                         server.identityFile = identity
+                        sshCommand remote: server, command: 'date > /tmp/jenkins_operation'
                         sshPut remote: server, from: './rpc/restart_unet.sh', into: '/tmp'
                         sshCommand remote: server, command: 'bash /tmp/restart_unet.sh'
                     }
