@@ -27,7 +27,9 @@ pipeline {
                 'feature_15',
                 'feature_16',
                 'feature_17',
-                'feature_18'],
+                'feature_18',
+                'hotfix_62',
+                'hotfix_63'],
             description: '服务器名称'
         )
     }
@@ -110,6 +112,12 @@ pipeline {
                             break
                         case "feature_18":
                             server = feature_18()
+                            break
+                        case "hotfix_62":
+                            server = hotfix_62()
+                            break
+                        case "hotfix_63":
+                            server = hotfix_63()
                             break
                     }
                 }
@@ -351,6 +359,26 @@ def time_test2(){
     def remote = [:]
     remote.name = "time_test2"
     remote.host = "192.168.6.41"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def hotfix_63(){
+    def remote = [:]
+    remote.name = "hotfix_63"
+    remote.host = "192.168.6.69"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def hotfix_62(){
+    def remote = [:]
+    remote.name = "hotfix_62"
+    remote.host = "192.168.6.39"
     remote.allowAnyHosts = true
     remote.user = "root"
     remote.path = "/data/docker-composes/"
