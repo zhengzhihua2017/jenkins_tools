@@ -1,0 +1,335 @@
+pipeline {
+    agent any
+
+    parameters {
+        choice(
+            name: 'ServerName',
+            choices: [
+                'time_test1',
+                'time_test2',
+                'feature_1',
+                'feature_2',
+                'feature_3',
+                'feature_4',
+                'feature_5',
+                'feature_6',
+                'feature_7',
+                'feature_8',
+                'feature_9',
+                'feature_10',
+                'feature_11',
+                'feature_12',
+                'feature_13',
+                'feature_14',
+                'feature_15',
+                'feature_16',
+                'feature_17',
+                'feature_18'],
+            description: '服务器名称'
+        )
+    }
+
+    environment{
+        def server = ''
+    }   
+
+
+    stages {
+        stage('初始化') {
+            steps{
+                script{
+                    switch (params.ServerName) {
+                        case "time_test1":
+                            server = time_test1()
+                            break
+                        case "time_test2":
+                            server = time_test2()
+                            break
+                        case "feature_1":
+                            server = feature_1()
+                            break
+                        case "feature_2":
+                            server = feature_2()
+                            break
+                        case "feature_3":
+                            server = feature_3()
+                            break
+                        case "feature_4":
+                            server = feature_4()
+                            break
+                        case "feature_5":
+                            server = feature_5()
+                            break
+                        case "feature_6":
+                            server = feature_6()
+                            break
+                        case "feature_7":
+                            server = feature_7()
+                            break
+                        case "feature_8":
+                            server = feature_8()
+                            break
+                        case "feature_9":
+                            server = feature_9()
+                            break
+                        case "feature_10":
+                            server = feature_10()
+                            break
+                        case "feature_11":
+                            server = feature_11()
+                            break
+                        case "feature_12":
+                            server = feature_12()
+                            break
+                        case "feature_13":
+                            server = feature_13()
+                            break
+                        case "feature_14":
+                            server = feature_14()
+                            break
+                        case "feature_15":
+                            server = feature_15()
+                            break
+                        case "feature_16":
+                            server = feature_16()
+                            break
+                        case "feature_17":
+                            server = feature_17()
+                            break
+                        case "feature_18":
+                            server = feature_18()
+                            break
+                    }
+                }
+            }
+        }
+
+        stage('远程登陆') {
+            options {
+                timeout(time: 5, unit: 'MINUTES')
+            }
+
+            steps {
+                script {
+                    withCredentials([
+                        sshUserPrivateKey(
+                            credentialsId: '91e688ab-5a3f-41c1-9bb1-4768996a94a7',
+                            keyFileVariable: 'identity',
+                            passphraseVariable: '',
+                            usernameVariable: server.user)
+                        ])
+                    {
+                        server.user = 'root'
+                        server.identityFile = identity
+                        sshCommand remote: server, command: 'date > /tmp/jenkins_operation'
+                        sshPut remote: server, from: './rpc/restart_game_server.sh', into: '/tmp'
+                        sshCommand remote: server, command: "bash /tmp/restart_game_server.sh"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+def feature_1(){
+    def remote = [:]
+    remote.name = "feature_1"
+    remote.host = "192.168.6.45"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_2(){
+    def remote = [:]
+    remote.name = "feature_2"
+    remote.host = "192.168.6.73"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_3(){
+    def remote = [:]
+    remote.name = "feature_3"
+    remote.host = "192.168.6.19"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_4(){
+    def remote = [:]
+    remote.name = "feature_4"
+    remote.host = "192.168.6.50"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_5(){
+    def remote = [:]
+    remote.name = "feature_5"
+    remote.host = "192.168.6.22"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_6(){
+    def remote = [:]
+    remote.name = "feature_6"
+    remote.host = "192.168.6.45"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_7(){
+    def remote = [:]
+    remote.name = "feature_7"
+    remote.host = "192.168.6.66"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_8(){
+    def remote = [:]
+    remote.name = "feature_8"
+    remote.host = "192.168.6.49"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_9(){
+    def remote = [:]
+    remote.name = "feature_9"
+    remote.host = "192.168.6.21"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_10(){
+    def remote = [:]
+    remote.name = "feature_10"
+    remote.host = "192.168.6.76"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_11(){
+    def remote = [:]
+    remote.name = "feature_11"
+    remote.host = "192.168.6.65"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_12(){
+    def remote = [:]
+    remote.name = "feature_12"
+    remote.host = "192.168.6.71"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_13(){
+    def remote = [:]
+    remote.name = "feature_13"
+    remote.host = "192.168.6.27"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_14(){
+    def remote = [:]
+    remote.name = "feature_14"
+    remote.host = "192.168.6.55"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_15(){
+    def remote = [:]
+    remote.name = "feature_15"
+    remote.host = "192.168.6.64"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_16(){
+    def remote = [:]
+    remote.name = "feature_16"
+    remote.host = "192.168.6.67"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_17(){
+    def remote = [:]
+    remote.name = "feature_16"
+    remote.host = "192.168.6.56"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def feature_18(){
+    def remote = [:]
+    remote.name = "feature_16"
+    remote.host = "192.168.6.14"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+
+
+def time_test1(){
+    def remote = [:]
+    remote.name = "time_test1"
+    remote.host = "192.168.6.32"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
+
+def time_test2(){
+    def remote = [:]
+    remote.name = "time_test2"
+    remote.host = "192.168.6.41"
+    remote.allowAnyHosts = true
+    remote.user = "root"
+    remote.path = "/data/docker-composes/"
+    return remote
+}
