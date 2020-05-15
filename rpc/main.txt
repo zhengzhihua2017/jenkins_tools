@@ -216,7 +216,7 @@ def feature_5(){
 def feature_6(){
     def remote = [:]
     remote.name = "feature_6"
-    remote.host = "192.168.6.45"
+    remote.host = "192.168.6.13"
     remote.allowAnyHosts = true
     remote.user = "root"
     remote.path = "/data/docker-composes/"
